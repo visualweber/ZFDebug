@@ -70,7 +70,8 @@ In Bootstrap.php
 
 In .ini
 
-settings.debug.enabled = 1 ; enable debug bar
+[development : bootstrap]
+	settings.debug.enabled = 1 ; enable debug bar
 
 
 Using Composer
