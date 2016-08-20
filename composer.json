@@ -2,7 +2,12 @@
     "name": "visualweber/zfdebug",
     "description": "ZFDebug is a plugin for the Zend Framework for PHP5, providing useful debug information displayed in a small bar at the bottom of every page.",
     "type": "library",
-    "homepage": "https://github.com/visualweber/zfdebug",
+    "keywords": [
+        "zf1",
+        "visualweber",
+        "zendframework 1 toolbar"
+    ],    
+    "homepage": "http://www.visualweber.com/",
     "license": "BSD-3-Clause",
     "authors": [
         {
