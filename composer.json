@@ -4,22 +4,23 @@
     "type": "library",
     "homepage": "https://github.com/visualweber/zfdebug",
     "license": "BSD-3-Clause",
-    "require": {
-        "zendframework/zendframework1": "1.*"
-    },
-    "autoload": {
-        "psr-0": {
-            "ZFDebug_": "library/"
-        }
-    },    
-    "include-path": [
-        "library/"
-    ],    
     "authors": [
         {
             "name": "visualweber.com",
             "homepage": "http://visualweber.com",
             "role": "Developer"
         }
-    ]
+    ],    
+    "require": {
+        "zendframework/zendframework1": "1.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "ZFDebug_": "src/"
+        },
+        "classmap":[
+            "src/"
+        ]
+    },    
+    "include-path": ["src/"]
 }
