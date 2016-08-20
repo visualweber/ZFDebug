@@ -20,6 +20,7 @@ To install, place the folder 'ZFDebug' in your library path, next to the Zend
 folder. Then add the following method to your bootstrap class (in ZF1.8+):
 
 In Bootstrap.php
+
     protected function _initZFDebug() {
         if (Zend_Registry::isRegistered('config') && $config = Zend_Registry::get('config')) {
             if ($config ['settings'] ['debug']['enabled'] == false):
@@ -68,6 +69,7 @@ In Bootstrap.php
     }
 
 In .ini
+
 settings.debug.enabled = 1 ; enable debug bar
 
 
