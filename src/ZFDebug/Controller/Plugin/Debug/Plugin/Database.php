@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ZFDebug Zend Additions
  *
@@ -9,7 +10,6 @@
  * @license    http://code.google.com/p/zfdebug/wiki/License     New BSD License
  * @version    $Id: Database.php 74 2009-05-19 12:30:36Z gugakfugl $
  */
-
 /**
  * @see Zend_Db_Table_Abstract
  */
@@ -22,8 +22,7 @@ require_once 'Zend/Db/Table/Abstract.php';
  * @copyright  Copyright (c) 2008-2009 ZF Debug Bar Team (http://code.google.com/p/zfdebug)
  * @license    http://code.google.com/p/zfdebug/wiki/License     New BSD License
  */
-class ZFDebug_Controller_Plugin_Debug_Plugin_Database extends ZFDebug_Controller_Plugin_Debug_Plugin implements ZFDebug_Controller_Plugin_Debug_Plugin_Interface
-{
+class ZFDebug_Controller_Plugin_Debug_Plugin_Database extends ZFDebug_Controller_Plugin_Debug_Plugin implements ZFDebug_Controller_Plugin_Debug_Plugin_Interface {
 
     /**
      * Contains plugin identifier name
@@ -43,16 +42,15 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Database extends ZFDebug_Controller
      * @param Zend_Db_Adapter_Abstract|array $adapters
      * @return void
      */
-    public function __construct(array $options = array())
-    {
-        if(!isset($options['adapter']) || !count($options['adapter'])) {
+    public function __construct(array $options = array()) {
+        if (!isset($options['adapter']) || !count($options['adapter'])) {
             if (Zend_Db_Table_Abstract::getDefaultAdapter()) {
                 $this->_db[0] = Zend_Db_Table_Abstract::getDefaultAdapter();
                 $this->_db[0]->getProfiler()->setEnabled(true);
             }
-        } else if ($options['adapter'] instanceof Zend_Db_Adapter_Abstract ) {
+        } else if ($options['adapter'] instanceof Zend_Db_Adapter_Abstract) {
             $this->_db[0] = $options['adapter'];
-        	$this->_db[0]->getProfiler()->setEnabled(true);
+            $this->_db[0]->getProfiler()->setEnabled(true);
         } else {
             foreach ($options['adapter'] as $name => $adapter) {
                 if ($adapter instanceof Zend_Db_Adapter_Abstract) {
@@ -68,8 +66,7 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Database extends ZFDebug_Controller
      *
      * @return string
      */
-    public function getIdentifier()
-    {
+    public function getIdentifier() {
         return $this->_identifier;
     }
 
@@ -78,17 +75,15 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Database extends ZFDebug_Controller
      *
      * @return string
      */
-    public function getTab()
-    {
-        if (!$this->_db)
+    public function getTab() {
+        if (!$this->_db):
             return 'No adapter';
-
+        endif;
         foreach ($this->_db as $adapter) {
             $profiler = $adapter->getProfiler();
-            $adapterInfo[] = $profiler->getTotalNumQueries().' in '.round($profiler->getTotalElapsedSecs()*1000, 2).' ms';
+            $adapterInfo[] = $profiler->getTotalNumQueries() . ' in ' . round($profiler->getTotalElapsedSecs() * 1000, 2) . ' ms';
         }
         $html = implode(' / ', $adapterInfo);
-
         return $html;
     }
 
@@ -97,13 +92,13 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Database extends ZFDebug_Controller
      *
      * @return string
      */
-    public function getPanel()
-    {
-        if (!$this->_db)
+    public function getPanel() {
+        if (!$this->
+                _db)
             return '';
 
         $html = '<h4>Database queries</h4>';
-        if (Zend_Db_Table_Abstract::getDefaultMetadataCache ()) {
+        if (Zend_Db_Table_Abstract::getDefaultMetadataCache()) {
             $html .= 'Metadata cache is ENABLED';
         } else {
             $html .= 'Metadata cache is DISABLED';
@@ -111,10 +106,10 @@ class ZFDebug_Controller_Plugin_Debug_Plugin_Database extends ZFDebug_Controller
 
         foreach ($this->_db as $name => $adapter) {
             if ($profiles = $adapter->getProfiler()->getQueryProfiles()) {
-                $html .= '<h4>Adapter '.$name.'</h4><ol>';
+                $html .= '<h4>Adapter ' . $name . '</h4><ol>';
                 foreach ($profiles as $profile) {
-                    $html .= '<li><strong>['.round($profile->getElapsedSecs()*1000, 2).' ms]</strong> '
-                             .htmlspecialchars($profile->getQuery()).'</li>';
+                    $html .= '<li><strong>[' . round($profile->getElapsedSecs() * 1000, 2) . ' ms]</strong> '
+                            . htmlspecialchars($profile->getQuery()) . '</li>';
                 }
                 $html .= '</ol>';
             }
