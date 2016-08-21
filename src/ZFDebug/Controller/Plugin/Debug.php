@@ -405,16 +405,16 @@ class ZFDebug_Controller_Plugin_Debug extends Zend_Controller_Plugin_Abstract {
                     var head=document.getElementsByTagName("head")[0];
                     head.insertBefore(scriptObj,head.firstChild);
                 }
-
-                var ZFDebugLoad = window.onload;
-                window.onload = function(){
-                    if (ZFDebugLoad) {
-                        ZFDebugLoad();
-                    }
-                    jQuery.noConflict();
-                    ZFDebugCollapsed();
-                };
-                
+                setInterval(function () { 
+                    var ZFDebugLoad = window.onload;
+                    window.onload = function(){
+                        if (ZFDebugLoad) {
+                            ZFDebugLoad();
+                        }
+                        jQuery.noConflict();
+                        ZFDebugCollapsed();
+                    };
+                }, 1000/60);
                 function ZFDebugCollapsed() {
                     if (' . $collapsed . ' == 1) {
                         ZFDebugPanel();
