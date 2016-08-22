@@ -411,7 +411,7 @@ class ZFDebug_Controller_Plugin_Debug extends Zend_Controller_Plugin_Abstract {
                         if (ZFDebugLoad) {
                             ZFDebugLoad();
                         }
-                        jQuery.noConflict();
+                        // jQuery.noConflict();
                         ZFDebugCollapsed();
                     };
                 }, 1000/60);
