@@ -399,11 +399,7 @@ class ZFDebug_Controller_Plugin_Debug extends Zend_Controller_Plugin_Abstract {
             </style>
             <script type="text/javascript" charset="utf-8">
                 if (typeof jQuery == "undefined") {
-                    var scriptObj = document.createElement("script");
-                    scriptObj.src = "' . $this->_options['jquery_path'] . '";
-                    scriptObj.type = "text/javascript";
-                    var head=document.getElementsByTagName("head")[0];
-                    head.insertBefore(scriptObj,head.firstChild);
+                   console.log("Need Jquery 1.3.2 or newer");
                 }
                 setInterval(function () { 
                     var ZFDebugLoad = window.onload;
